@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use App\App;
 use App\Config;
@@ -13,7 +13,8 @@ define('VIEW_PATH', __DIR__ . '/../views');
 
 $router = new Router();
 $router->get('/', [\App\Controllers\HomeController::class, 'index'])
-       ->post('/create', [\App\Controllers\CreateController::class, 'create']);
+    ->post('/create', [\App\Controllers\CreateController::class, 'create'])
+    ->post('/delete', [\App\Controllers\DeleteNoteController::class, 'delete']);
 
 (new App(
     $router,
