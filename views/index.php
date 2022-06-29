@@ -9,29 +9,32 @@
         * {
             box-sizing: border-box;
         }
+
         body {
             font-family: Arial;
         }
 
-        .new-note{
+        .new-note {
             width: 300px;
             margin: 0 auto;
         }
 
         .new-note input,
         .new-note textarea,
-        .new-note button{
+        .new-note button {
             font-family: Arial;
             padding: 5px 10px;
             display: block;
             width: 100%;
             margin-bottom: 15px;
         }
+
         .notes {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .note {
             background-color: #ffda00;
             color: black;
@@ -42,13 +45,16 @@
             position: relative;
             min-height: 100px;
         }
-        .note .title{
+
+        .note .title {
             margin-bottom: 10px;
             font-weight: bold;
         }
+
         .note .title a {
             color: black;
         }
+
         .note .close {
             position: absolute;
             right: 10px;
@@ -56,6 +62,7 @@
             background-color: transparent;
             border: none;
         }
+
         .note small {
             position: absolute;
             bottom: 10px;
@@ -77,6 +84,23 @@
         </button>
     </form>
     <div class="notes">
+        <?php foreach ($notes as $note): ?>
+            <div class="note">
+                <div class="title">
+                    <a href="?id=<?php echo $note->id ?>">
+                        <?php echo $note->title ?>
+                    </a>
+                </div>
+                <div class="description">
+                    <?php echo $note->description ?>
+                </div>
+                <small><?php echo date('d/m/Y', strtotime($note->createDate)) ?></small>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" value="<?php echo $note->id ?>">
+                    <button class="close">X</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 </body>
