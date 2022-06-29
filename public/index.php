@@ -12,7 +12,8 @@ $dotenv->load();
 define('VIEW_PATH', __DIR__ . '/../views');
 
 $router = new Router();
-$router->get('/', [\App\Controllers\HomeController::class, 'index']);
+$router->get('/', [\App\Controllers\HomeController::class, 'index'])
+       ->post('/create', [\App\Controllers\CreateController::class, 'create']);
 
 (new App(
     $router,
